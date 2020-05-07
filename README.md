@@ -37,6 +37,9 @@ in development.
 __sources:__
 
 https://en.wikipedia.org/wiki/Mandelbrot_set
+
 http://www.linuxvoice.com/issues/009/fractal.pdf
+
 https://www.geeksforgeeks.org/mandelbrot-fractal-set-visualization-in-python/
+
 https://plus.maths.org/content/unveiling-mandelbrot-set
