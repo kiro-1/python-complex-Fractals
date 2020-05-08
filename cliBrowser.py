@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 
@@ -22,10 +22,13 @@ def mandelbrot( h,w, maxit=100 ):
 
 
 
-h = mandelbrot(100,100)
+h = input("please enter the height in units of your mandelbrot set: ")
+w = input("please enter the width in units of your mandelbrot set: ")
+m = mandelbrot(int(h),int(w))
+with open("thebrot.txt", 'w') as f:
+    for x in m:
 
-for x in h:
-    print(x)
+        f.write(str(x))
 
 # plt.imshow(mandelbrot(800,800))
 # plt.show()

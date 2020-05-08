@@ -26,7 +26,11 @@ from numpy import complex, array
 import colorsys
 
 # setting the width of the output image as 1024
-WIDTH = 25000
+WIDTH = 100
+
+#####
+#height is half of width
+####
 
 # a function to return a tuple of colors
 # as integer value of rgb
@@ -58,4 +62,4 @@ for x in range(img.size[0]):
 
 # to display the created fractal after
 # completing the given number of iterations
-img.show()
+img.save("hhh.png")

@@ -1,7 +1,23 @@
 import pygame
-
-from numpy import complex, array
 import colorsys
+
+height = 400#must be divisihble by 2
+max_iteration = 99
+aspect = 2
+
+def scale(val, src, dst):#tuple lowest possible - highest possible,,,,,tuple new lowest - new highest
+    return ((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0]
+
+
+
+screen2 = []
+
+for row in range(height):
+    screen2.append([])
+
+for col in range(height):
+    for x in range(int(height/2)):
+        screen2[col].append([])
 
 
 # Define some colors
@@ -17,15 +33,7 @@ HEIGHT = 1
 # This sets the margin between each cell
 MARGIN = 0
 
-# Create a 2 dimensional array. A two dimensional
-# array is simply a list of lists.
-grid = []
-for row in range(200):
-    # Add an empty array that will hold each cell
-    # in this row
-    grid.append([])
-    for column in range(200):
-        grid[row].append(0)  # Append a cell
+
 
 # Set row 1, cell 5 to one. (Remember rows and
 # column numbers start at zero.)
@@ -35,7 +43,7 @@ for row in range(200):
 pygame.init()
 
 # Set the HEIGHT and WIDTH of the screen
-WINDOW_SIZE = [200, 200]
+WINDOW_SIZE = [int(height/aspect), height]
 screen = pygame.display.set_mode(WINDOW_SIZE)
 
 # Set title of screen
@@ -47,6 +55,23 @@ done = False
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
+
+
+# +--- Calculate screen grid numbers ---+
+for row in range(height):
+    for col in range(int(height/aspect)):
+        x0 = scale(row, (0,height), (-2.5,1))###--If it dosent work try edit these lines
+        y0 = scale(col, (0,int(height/aspect)), (-1,1))#####  +--col,row,order of scaling(arrangement(a,b)(b,a)), min and max values---+  all these can fail
+        x = 0
+        y = 0
+        iteration = 0
+        while x*x + y*y <= 2*2 and iteration < max_iteration:
+            xtemp = x*x -y*y + x0
+            y = 2*x*y + y0
+            x = xtemp
+            iteration += 1
+
+        screen2[row][col] = iteration
 # -------- Main Program Loop -----------
 while not done:
     for event in pygame.event.get():  # User did something
@@ -69,18 +94,24 @@ while not done:
 
 
     # Set the screen background
-    screen.fill(BLACK)
+
+    #screen.fill(BLACK)
+
+
 
     # Draw the grid
-    for row in range(200):
-        for column in range(200):
-
+    for row in range(height):
+        for column in range(int(height/aspect)):
+            color = (scale(screen2[row][column], (0,max_iteration), (80,1)), 0, 100)
             pygame.draw.rect(screen,
-                             grid[row][column],
+                            color,
                              [( WIDTH) * column,
                               (HEIGHT) * row,
                               WIDTH,
                               HEIGHT])
+
+
+
 
     # Limit to 20 frames per second
     clock.tick(20)
