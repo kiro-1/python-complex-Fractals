@@ -14,9 +14,6 @@ for col in range(height):
     for x in range(int(height/2)):
         screen2[col].append([])
 
-print(screen2[0])#columns, height SHOULD BE HALF OF THE HEIGHT
-print(len(screen2))#rows heigh
-
 #     r2 c3
 #screen2[1][2]=2
 
@@ -34,6 +31,8 @@ for row in range(height):
             iteration += 1
 
         screen2[row][col] = iteration
+
+
 
 for x in screen2:
     print(x)

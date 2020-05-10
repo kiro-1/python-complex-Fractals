@@ -2,9 +2,15 @@ import pygame
 import colorsys
 import pygame.gfxdraw
 import time
-height = 1440#must be divisihble by 2
+height = 600#must be divisihble by 2
 max_iteration = 99
 aspect = 2
+
+x01 = -0.20
+x02 = -0.19
+
+y01 = -0.68
+y02 = -0.67
 
 def scale(val, src, dst):#tuple lowest possible - highest possible,,,,,tuple new lowest - new highest
     return ((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0]
@@ -42,8 +48,8 @@ clock = pygame.time.Clock()
 # +--- Calculate screen grid numbers ---+
 for row in range(height):
     for col in range(int(height/aspect)):
-        x0 = scale(row, (0,height), (-2.5,1))###--If it dosent work try edit these lines
-        y0 = scale(col, (0,int(height/aspect)), (-1,1))#####  +--col,row,order of scaling(arrangement(a,b)(b,a)), min and max values---+  all these can fail
+        x0 = scale(row, (0,height), (x01,x02))###--If it dosent work try edit these lines
+        y0 = scale(col, (0,int(height/aspect)), (y01,y02))#####  +--col,row,order of scaling(arrangement(a,b)(b,a)), min and max values---+  all these can fail
         x = 0
         y = 0
         iteration = 0
