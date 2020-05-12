@@ -1,9 +1,9 @@
 import pygame
 import pygame.gfxdraw
 
-from colour import Color
-width = 1000
-height = 1000#must be divisihble by 2
+
+width = 300
+height = 300#must be divisihble by 2
 zoom_window = 50
 max_iteration = 255
 
@@ -190,8 +190,15 @@ while not done:
     pos = pygame.mouse.get_pos()
     pygame.draw.rect(screen, (0,255,0), (pos[0]-zoom_window,pos[1]-zoom_window,100,100), 1)
 
+    top = scale(pos[1]+zoom_window, (0,height), (y01,y02))
+    bottom = scale(pos[1]-zoom_window, (0,height), (y01,y02))
+    left = scale(pos[0]-zoom_window, (0,width), (x01,x02))
+    right = scale(pos[0]+zoom_window, (0,width), (x01,x02))
+
     img = font.render(f'x1:{x01} x2:{x02} y1:{y01} y2:{y02}', True, (255,255,255))
+    img2 = font.render(f'x1:{top} x2:{bottom} y1:{left} y2:{right}', True, (255,255,255))
     screen.blit(img, (0, 0))
+    screen.blit(img2, (0, 20))
     # Limit to 60 frames per second
     clock.tick(60)
 
