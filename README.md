@@ -40,18 +40,27 @@ _native: basic no libraries, makes the array. configurable size and iterations_
 
 ```
 _grid: using only pygame creates an interactable window for exploring the mandelbrot set. configurable coords, size(x+y), iterations and colors._
-"![Mandelbrot Eye](Images/Eye.png)"
+
+<img src="Images/Eye.PNG">
+
 
 # Files
 - native - uses no libraries(not efficient):
 - grid - pygame used to render
 
+#TODO
+- Fix Zooming Bugs.
+- add a numpy version for running in realtime (needed badly).
+- add threading support.
+
 __sources:__
 
 https://en.wikipedia.org/wiki/Mandelbrot_set
-
 http://www.linuxvoice.com/issues/009/fractal.pdf
-
 https://www.geeksforgeeks.org/mandelbrot-fractal-set-visualization-in-python/
-
 https://plus.maths.org/content/unveiling-mandelbrot-set
+https://www.antaresanalytics.net/post/2018/09/10/creating-a-zooming-mandelbrot-fractal-with-python-in-power-bi
+https://stackoverflow.com/questions/369438/smooth-spectrum-for-mandelbrot-set-rendering
+http://programarcadegames.com/index.php?lang=en&chapter=array_backed_grids
+https://stackoverflow.com/questions/16500656/which-color-gradient-is-used-to-color-mandelbrot-in-wikipedia
+https://stackoverflow.com/questions/524291/how-to-zoom-in-on-a-section-of-the-mandelbrot-set
