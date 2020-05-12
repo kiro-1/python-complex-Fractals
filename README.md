@@ -1,11 +1,11 @@
 # python-complex-Fractals
 a few python tools for learning about creating fractals and working with complex numbers.
 made for education.
-in development.
+in development. please note that if a script could be very easily optimised i do know i just am either working on it or will leave it simple for educational purposes
 
 ### Created using Wikipedia pseudocode:
 
-_native: basic no libraries_
+_native: basic no libraries, makes the array. configurable size and iterations_
 ```
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -39,37 +39,12 @@ _native: basic no libraries_
 [2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2]
 
 ```
-_native2: basic no libraris with changable aspect ratio_
-```
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-[1, 1, 1, 1, 3,99, 3, 1, 1, 1]
-[1, 2, 3, 3, 4,99, 4, 3, 3, 2]
-[2, 3, 3, 3, 5,99, 5, 3, 3, 3]
-[3, 3, 3, 4, 5,99, 5, 4, 3, 3]
-[3, 3, 3,10,12,99,12,10, 3, 3]
-[3, 3, 4, 7,99,99,99, 7, 4, 3]
-[3, 4, 5, 7,99,99,99, 7, 5, 4]
-[3, 4, 6, 8,16,99,16, 8, 6, 4]
-[4, 5,14,99,99,99,99,99,14, 5]
-[4, 6,26,99,99,99,99,99,26, 6]
-[6,55,99,99,99,99,99,99,99,55]
-[11,99,99,99,99,99,99,99,99,99]
-[4, 6,99,99,99,99,99,99,99, 6]
-[3, 5,15,99,99,12,99,99,15, 5]
-[3, 3, 5, 7, 6, 5, 6, 7, 5, 3]
-[2, 3, 3, 3, 4, 4, 4, 3, 3, 3]
-[2, 2, 3, 3, 3, 3, 3, 3, 3, 2]
+_grid: using only pygame creates an interactable window for exploring the mandelbrot set. configurable coords, size(x+y), iterations and colors._
+"![Mandelbrot Eye](Images/Eye.png)"
 
-```
 # Files
 - native - uses no libraries(not efficient):
-  - native
-  - native with colour
-- cliBrowser -generate a list in command line
-- grid - a pygame used to render
-- image generator in full colour
+- grid - pygame used to render
 
 __sources:__
 
