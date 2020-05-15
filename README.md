@@ -43,14 +43,17 @@ _grid: using only pygame creates an interactable window for exploring the mandel
 
 <img src="Images/Eye.PNG">
 
+_grid: using only pygame creates an interactable window for exploring the mandelbrot set. configurable coords, size, iterations and colors.
+IS INCREDIBLY FASTER BECAUSE OF NUMPY_
+
+<img src="Images/Needle.PNG">
 
 # Files
 - native - uses no libraries(not efficient):
 - grid - pygame used to render
 
 #TODO
-- Fix Zooming Bugs.
-- add a numpy version for running in realtime (needed badly).
+- Add interpolated spectrum colouring support.
 - add threading support.
 
 __sources:__
@@ -64,3 +67,4 @@ https://stackoverflow.com/questions/369438/smooth-spectrum-for-mandelbrot-set-re
 http://programarcadegames.com/index.php?lang=en&chapter=array_backed_grids
 https://stackoverflow.com/questions/16500656/which-color-gradient-is-used-to-color-mandelbrot-in-wikipedia
 https://stackoverflow.com/questions/524291/how-to-zoom-in-on-a-section-of-the-mandelbrot-set
+https://rosettacode.org/wiki/Mandelbrot_set#Python

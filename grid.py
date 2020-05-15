@@ -1,10 +1,10 @@
 import pygame
 import pygame.gfxdraw
 
-
 width = 300
 height = 300#must be divisihble by 2
-zoom_window = 50
+zoom_window_x = 10
+zoom_window_y = 10
 max_iteration = 255
 
 # y01 = -0.19919
@@ -20,7 +20,70 @@ y02 = 1#d,2
 x01 = -1.5#l,3
 x02 = 1.5#r,4
 
+
+previous = [[-2.25,1,-1.5,1.5]]
+
 colors = []
+
+colors.append((12, 3, 13))
+colors.append((25, 7, 26))
+colors.append((15, 3, 33))
+colors.append((9, 1, 47))
+colors.append((7, 2, 59))
+colors.append((4, 4, 73))
+colors.append((2, 5, 88))
+colors.append((0, 7, 100))
+colors.append((6, 26, 116))
+colors.append((12, 44, 138))
+colors.append((19, 62, 150))
+colors.append((24, 82, 177))
+colors.append((42, 92, 189))
+colors.append((57, 125, 209))
+colors.append((85, 140, 215))
+colors.append((134, 181, 229))
+colors.append((167, 200, 235))
+colors.append((211, 236, 248))
+colors.append((228, 234, 215))
+colors.append((241, 233, 191))
+colors.append((245, 215, 100))
+colors.append((248, 201, 95))
+colors.append((252, 185, 42))
+colors.append((255, 170, 0))
+colors.append((232, 137, 0))
+colors.append((204, 128, 0))
+colors.append((175, 109, 0))
+colors.append((153, 87, 0))
+colors.append((125, 65, 0))
+
+colors.append((12, 3, 13))
+colors.append((25, 7, 26))
+colors.append((15, 3, 33))
+colors.append((9, 1, 47))
+colors.append((7, 2, 59))
+colors.append((4, 4, 73))
+colors.append((2, 5, 88))
+colors.append((0, 7, 100))
+colors.append((6, 26, 116))
+colors.append((12, 44, 138))
+colors.append((19, 62, 150))
+colors.append((24, 82, 177))
+colors.append((42, 92, 189))
+colors.append((57, 125, 209))
+colors.append((85, 140, 215))
+colors.append((134, 181, 229))
+colors.append((167, 200, 235))
+colors.append((211, 236, 248))
+colors.append((228, 234, 215))
+colors.append((241, 233, 191))
+colors.append((245, 215, 100))
+colors.append((248, 201, 95))
+colors.append((252, 185, 42))
+colors.append((255, 170, 0))
+colors.append((232, 137, 0))
+colors.append((204, 128, 0))
+colors.append((175, 109, 0))
+colors.append((153, 87, 0))
+colors.append((125, 65, 0))
 
 colors.append((12, 3, 13))
 colors.append((25, 7, 26))
@@ -54,6 +117,7 @@ colors.append((125, 65, 0))
 colors.append((0,0,0))
 
 
+
 # r = 0
 # g = 0
 # b = 0
@@ -68,15 +132,8 @@ colors.append((0,0,0))
 #         b = 0
 # colors.append((0,0,0))
 
-
-
 def scale(val, src, dst):#tuple lowest possible - highest possible,,,,,tuple new lowest - new highest
     return float(((val - src[0]) / (src[1]-src[0])) * (dst[1]-dst[0]) + dst[0])#maybe remove float?
-
-
-
-
-
 
 screen2 = []
 
@@ -104,7 +161,6 @@ done = False
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
-
 #get font
 font = pygame.font.SysFont(None, 14)
 # +--- Calculate screen grid numbers ---+
@@ -123,11 +179,13 @@ def generate_grid():
                 iteration += 1
 
             screen2[row][col] = iteration
-            print(str(int(scale(row, (0, width), (0,100))))+"."+str(int(scale(col, (0, height), (0,100))))+"%")
+            print(str(int(scale(row, (0, width), (0,100))))+"%")
 
 generate_grid()
+
 # +--draw pixels --+
-# +-- NOTE IF YOU WANT ZOOM PUT IN LOOP --+
+# +-- NOTE IF YOU WANT ZOOM PUT IN LOOP --
+
 def draw_image():
     for row in range(height):
         for column in range(width):
@@ -135,70 +193,72 @@ def draw_image():
             pygame.gfxdraw.pixel(screen, column, row, color1)
 
 draw_image()
+print("- b go back one zoom generation\n- r reset the zoom")
 # -------- Main Program Loop -----------
 while not done:
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
             done = True  # Flag that we are done so we exit this loop
 
-
-
-
         elif event.type == pygame.MOUSEBUTTONDOWN:
             # User clicks the mouse. Get the position
             pos = pygame.mouse.get_pos()
             # Change the x/y screen coordinates to grid coordinates
 
-
             print("Click ", pos, )
 
-            #ERROR CAUSES IMAGES TO APPEAR ON LEFT OF INTENDED AREA
-            #need to know where those pixels lie on the complex plane
-            top = scale(pos[1]+zoom_window, (0,height), (y01,y02))
-            bottom = scale(pos[1]-zoom_window, (0,height), (y01,y02))
+            top = scale(pos[1]+zoom_window_y/2, (0,height), (y01,y02))
+            bottom = scale(pos[1]-zoom_window_y/2, (0,height), (y01,y02))
 
-            left = scale(pos[0]-zoom_window, (0,width), (x01,x02))
-            right = scale(pos[0]+zoom_window, (0,width), (x01,x02))
+            left = scale(pos[0]-zoom_window_x/2, (0,width), (x01,x02))
+            right = scale(pos[0]+zoom_window_x/2, (0,width), (x01,x02))
 
-            print(y01,y02,x01,x02)
 
             y01 = bottom
             y02 = top
-            x01 = right
-            x02 = left
+            x01 = left
+            x02 = right
 
-
-
-
-
-            print("t+b")
-            print(top,bottom)
-            print("l+r")
-            print(left, right)
+            previous.append([y01,y02,x01,x02])
 
             generate_grid()
-
-
-
             draw_image()
-
 
             print("done")
 
+
+        elif event.type == pygame.KEYDOWN:#if a keystroke has been detected
+            if event.key == pygame.K_b:
+                try:
+                    previous.pop()
+                    num = len(previous)-1
+                    y01 = previous[num][0]
+                    y02 = previous[num][1]
+                    x01 = previous[num][2]
+                    x02 = previous[num][3]
+                    generate_grid()
+                    print("done")
+                except:
+                    previous.append([-2.25,1,-1.5,1.5])
+
+            if event.key == pygame.K_r:
+                y01,y02,x01,x02 = -2.25,1,-1.5,1.5
+                generate_grid()
+                print("done")
     draw_image()
 
     pos = pygame.mouse.get_pos()
-    pygame.draw.rect(screen, (0,255,0), (pos[0]-zoom_window,pos[1]-zoom_window,100,100), 1)
+    pygame.draw.rect(screen, (0,255,0), (int(pos[0]-zoom_window_x/2),int(pos[1]-zoom_window_y/2),zoom_window_x,zoom_window_y), 1)
 
-    top = scale(pos[1]+zoom_window, (0,height), (y01,y02))
-    bottom = scale(pos[1]-zoom_window, (0,height), (y01,y02))
-    left = scale(pos[0]-zoom_window, (0,width), (x01,x02))
-    right = scale(pos[0]+zoom_window, (0,width), (x01,x02))
+    # top = scale(pos[1]+zoom_window, (0,height), (y01,y02))
+    # bottom = scale(pos[1]-zoom_window, (0,height), (y01,y02))
+    # left = scale(pos[0]-zoom_window, (0,width), (x01,x02))
+    # right = scale(pos[0]+zoom_window, (0,width), (x01,x02))
 
     img = font.render(f'x1:{x01} x2:{x02} y1:{y01} y2:{y02}', True, (255,255,255))
-    img2 = font.render(f'x1:{top} x2:{bottom} y1:{left} y2:{right}', True, (255,255,255))
+
     screen.blit(img, (0, 0))
-    screen.blit(img2, (0, 20))
+
     # Limit to 60 frames per second
     clock.tick(60)
 
